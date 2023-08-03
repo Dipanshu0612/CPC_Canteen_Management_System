@@ -1,9 +1,9 @@
 import React from 'react'
 import MainCarousel from '../components/carousel'
 import { NavLink as Link } from 'react-router-dom'
-import Admin_Login from './admin_login'
 
-export default function Login(){
+
+export default function Admin_Login(){
 return (
     <>
     <div className='flex justify-around h-[98%] max-h-screen'>
@@ -23,7 +23,7 @@ return (
 
         <div className='flex flex-col items-center justify-center'>
           <h1>Welcome to CPC Canteen</h1>
-          <h3>User Login</h3>
+          <h3>Admin Login</h3>
         </div>
 
         <div className='flex flex-col w-50 space-y-5 py-5 px-5 bg-blue-100 rounded-3xl'> 
@@ -32,7 +32,7 @@ return (
         </div>
 
         <div>
-          <button className='bg-green-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/admin-login" className="text-black no-underline">Admin Login</Link></button>
+          <button className='bg-green-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/user-login" className="text-black no-underline">User Login</Link></button>
           <button className='bg-blue-500 py-2 px-2 my-2 mx-2 rounded-lg'>Forgot Password?</button>
 
         </div>
