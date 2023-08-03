@@ -4,15 +4,39 @@ import MainCarousel from '../components/carousel'
 export default function Login(){
 return (
     <>
-    <div className='flex justify-around border border-black'>
-      <div className='border border-black max-w-[49%] h-full'>
+    <div className='flex justify-around border border-black h-[98%] max-h-screen'>
+
+      <div className='w-[50%] min-h-fit border border-black overflow-hidden'>
         <MainCarousel />
       </div>
-      <div className='border border-black max-w-[49%] h-full'>
-          User Login
 
+      <div className='w-[50%] min-h-full border border-black bg-slate-300 flex items-center justify-center flex-col space-y-8'>
+
+        <div className='flex space-x-5 '>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_of_India_logo.svg" alt="" className='w-[7rem]'/>
+          <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Central_Police_Canteen_Logo.png" alt="" className='w-[7rem]'/>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ministry_of_Home_Affairs_India.svg/1200px-Ministry_of_Home_Affairs_India.svg.png" alt="" className='w-[10rem]'/>
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" alt="" className="w-[5rem]" / >
+        </div>
+
+        <div className='flex flex-col items-center justify-center'>
+          <h1>Welcome to CPC Canteen</h1>
+          <h3>User Login</h3>
+        </div>
+
+        <div className='flex flex-col w-50 space-y-5 py-5 px-5 bg-blue-100 ronuded-lg'> 
+          <input type="email" placeholder='Email / User Id' />
+          <input type="password" placeholder='Password' />
+        </div>
+
+        <div>
+          <button className='bg-blue-500 py-2 px-2 my-2 mx-2 rounded-lg'>Admin Login</button>
+          <button className='bg-blue-500 py-2 px-2 my-2 mx-2 rounded-lg'>Forgot Password?</button>
+
+        </div>
 
       </div>
+      
     </div>
     </>
   )
