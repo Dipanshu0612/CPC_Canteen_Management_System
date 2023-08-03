@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainCarousel from '../components/carousel'
 import { NavLink as Link } from 'react-router-dom'
-import Admin_Login from './admin_login'
 
 export default function Login(){
+  const [userID, setUserID] = useState('');
+  const [password, setPassword] = useState('');
+
 return (
     <>
-    <div className='flex justify-around h-[98%] max-h-screen'>
+    <div className='flex justify-around h-screen w-full'>
 
-      <div className='w-[50%] min-h-fit overflow-hidden'>
+      <div className='w-1/2 min-h-fit overflow-hidden'>
         <MainCarousel />
       </div>
 
-      <div className='w-[50%] min-h-full bg-slate-300 flex items-center justify-center flex-col space-y-8'>
+      <div className='w-1/2 h-full bg-slate-300 flex items-center justify-center flex-col space-y-8'>
 
         <div className='flex space-x-5 '>
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_of_India_logo.svg" alt="" className='w-[7rem]'/>
@@ -26,14 +28,15 @@ return (
           <h3>User Login</h3>
         </div>
 
-        <div className='flex flex-col w-50 space-y-5 py-5 px-5 bg-blue-100 rounded-3xl'> 
-          <input type="email" placeholder='Email / User Id'  className='bg-slate-100 rounded-sm'/>
-          <input type="password" placeholder='Password'  className='bg-slate-100 rounded-sm'/>
+        <div className='flex flex-col w-50 space-y-5 py-5 px-6 bg-slate-200 rounded-3xl'> 
+          <input type="email" placeholder='User Id' className='bg-slate-100 rounded-sm px-2 py-1 '/>
+          <input type="password" placeholder='Password' className='bg-slate-100 rounded-sm px-2 py-1 '/>
+          <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg'>Submit</button>
         </div>
 
         <div>
           <button className='bg-green-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/admin-login" className="text-black no-underline">Admin Login</Link></button>
-          <button className='bg-blue-500 py-2 px-2 my-2 mx-2 rounded-lg'>Forgot Password?</button>
+          <button className='bg-blue-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/forgot-password" className="text-black no-underline">Forgot Password</Link></button>
 
         </div>
 
