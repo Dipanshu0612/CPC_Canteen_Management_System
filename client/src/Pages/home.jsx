@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Modal from 'react-bootstrap/Modal';
 
 export default function Home() {
   const [vehicle_data, setVehicleData] = useState([])
@@ -14,6 +15,28 @@ export default function Home() {
   const [medicine_data, setMedicineData] = useState([])
   const [food_data, setFoodData] = useState([])
   const [sports_data, setSportsData] = useState([])
+  const [fullscreen, setFullscreen] = useState(true);
+  const [show, setShow] = useState(false);
+  const [curr_item,setCurrItem]=useState({
+    item_name:"",
+    company_name:"",
+    item_type:"",
+    item_color:"",
+    quantity:0,
+    price:0,
+    item_img:"",
+    item_desc:"",
+    item_full:"",
+    weight:""
+  })
+
+  function handleShow(breakpoint) {
+    setFullscreen(true);
+    setShow(true);
+  }
+
+  let {name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight}=curr_item;
+  console.log(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
 
   useEffect(() => {
     axios.get('http://localhost:3001/getVehicles')
@@ -43,6 +66,33 @@ export default function Home() {
   return (
     <>
       <Header />
+
+
+      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)} className='my-modal'>
+        <Modal.Header closeButton>
+          <Modal.Title>{}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className='flex'>
+            <div className='w-1/2'>
+              <img src={itemimg} alt="Item-Image" className='px-8 py-2 object-contain'/>
+            </div>
+            <div className='w-1/2 flex flex-col'>
+              <h1 className='px-3 text-[3rem]'>{name}</h1>
+              <h5 className='px-3'>{itemdesc}</h5>
+              <h5 className='px-3'>Brand : {cname}</h5>
+              <h5 className='px-3'>Item-Type : {itype}</h5>
+              <h5 className='px-3'>Colour : {icolor || "-----------"}</h5>
+              <h5 className='px-3'>Item-Type : {itype}</h5>
+              <h5 className='px-3'>Weight : {weight || "-----------"}</h5>
+            </div>
+
+          </div>
+
+        </Modal.Body>
+      </Modal>
+
+
       <div className='flex flex-col bg-slate-50'>
 
         <div className='flex flex-col bg-slate-200 my-3'>
@@ -59,7 +109,21 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{food.company_name}</h4>
                     <h5>Rs.{food.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                    handleShow()
+                    setCurrItem({
+                      name:food.item_name,
+                      cname:food.company_name,
+                      itype:food.diet_type,
+                      weight:food.item_weight,
+                      quan:food.quantity,
+                      price:food.price,
+                      itemimg:food.item_img,
+                      itemdesc:food.item_desc,
+                      fulldet:food.item_details
+                  })
+                  }
+                    }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -83,7 +147,22 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{cloth.company_name}</h4>
                     <h5>Rs.{cloth.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                  handleShow()
+                  setCurrItem({
+                      name:cloth.item_name,
+                      cname:cloth.company_name,
+                      itype:cloth.diet_type,
+                      weight:cloth.item_weight,
+                      quan:cloth.quantity,
+                      price:cloth.price,
+                      itemimg:cloth.item_img,
+                      itemdesc:cloth.product_details,
+                      fulldet:cloth.item_details,
+                      icolor:cloth.color
+                  })
+                }
+                  }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -107,7 +186,22 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{elec.company_name}</h4>
                     <h5>Rs.{elec.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                  handleShow()
+                  setCurrItem({
+                      name:elec.item_name,
+                      cname:elec.company_name,
+                      itype:elec.item_type,
+                      weight:elec.item_weight,
+                      quan:elec.quantity,
+                      price:elec.price,
+                      itemimg:elec.item_img,
+                      itemdesc:elec.description,
+                      fulldet:elec.item_details,
+                      icolor:elec.item_colour
+                  })
+                }
+                  }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -131,7 +225,21 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{vehicle.company_name}</h4>
                     <h5>Rs.{vehicle.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                  handleShow()
+                  setCurrItem({
+                      name:vehicle.vehicle_name,
+                      cname:vehicle.company_name,
+                      itype:vehicle.vehicle_type,
+                      weight:vehicle.item_weight,
+                      quan:vehicle.quantity,
+                      price:vehicle.price,
+                      itemimg:vehicle.vehicle_img,
+                      itemdesc:vehicle.vehicle_desc,
+                      fulldet:vehicle.full_details
+                  })
+                }
+                  }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -155,7 +263,21 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{health.company_name}</h4>
                     <h5>Rs.{health.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                  handleShow()
+                  setCurrItem({
+                      name:health.item_name,
+                      cname:health.company_name,
+                      itype:health.item_type,
+                      weight:health.item_weight,
+                      quan:health.quantity,
+                      price:health.price,
+                      itemimg:health.item_img,
+                      itemdesc:health.item_desc,
+                      fulldet:health.item_details
+                  })
+                }
+                  }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -179,7 +301,22 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{sport.company_name}</h4>
                     <h5>Rs.{sport.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                  handleShow()
+                  setCurrItem({
+                      name:sport.item_name,
+                      cname:sport.company_name,
+                      itype:sport.item_type,
+                      weight:sport.item_weight,
+                      quan:sport.quantity,
+                      price:sport.price,
+                      itemimg:sport.item_img,
+                      itemdesc:sport.item_desc,
+                      fulldet:sport.full_details,
+                      icolor:sport.item_colour
+                  })
+                }
+                  }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -203,7 +340,21 @@ export default function Home() {
                     <h4 className='text-[1rem]'>{med.company_name}</h4>
                     <h5>Rs.{med.price}/-</h5>
                   </Card.Text>
-                  <Button variant="primary">View Item</Button>
+                  <Button variant="primary" onClick={()=>{ 
+                  handleShow()
+                  setCurrItem({
+                      name:med.medicine_name,
+                      cname:med.company_name,
+                      itype:med.medicine_type,
+                      weight:med.item_weight,
+                      quan:med.quantity,
+                      price:med.price,
+                      itemimg:med.item_img,
+                      itemdesc:med.description,
+                      fulldet:med.item_details
+                  })
+                }
+                  }>View Item</Button>
                 </Card.Body>
               </Card>
               </div>

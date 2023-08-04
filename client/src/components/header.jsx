@@ -29,7 +29,7 @@ export default function Header() {
       </div>
 
       <div className='relative'>
-        <input type="text" className='pr-[5rem] pl-2 py-1 rounded-md ml-2' placeholder='Search Items'/>
+        <input type="text" className='pr-[5rem] pl-2 py-1 rounded-md ml-2' placeholder='Search Items' disabled/>
         <button className=''><AiOutlineSearch className='absolute right-2 bottom-[0.4rem] text-xl'/></button>
       </div>
 

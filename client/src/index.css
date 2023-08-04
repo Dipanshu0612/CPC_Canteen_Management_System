@@ -76,3 +76,8 @@ p {
     padding: 0.5rem 0;
   }
 }
+
+.my-modal .modal-content{
+  background-color: rgb(17, 24, 39);
+  color: white;
+}
