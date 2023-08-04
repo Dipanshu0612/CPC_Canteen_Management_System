@@ -75,7 +75,7 @@ export default function Home() {
         <Modal.Body>
           <div className='flex'>
             <div className='w-1/2'>
-              <img src={itemimg} alt="Item-Image" className='px-8 py-2 object-contain'/>
+              <img src={itemimg} alt="Item-Image" className='px-8 py-2 object-contain flex items-center justify-center'/>
             </div>
             <div className='w-1/2 flex flex-col'>
               <h1 className='px-3 text-[3rem]'>{name}</h1>
@@ -85,6 +85,11 @@ export default function Home() {
               <h5 className='px-3'>Colour : {icolor || "-----------"}</h5>
               <h5 className='px-3'>Item-Type : {itype}</h5>
               <h5 className='px-3'>Weight : {weight || "-----------"}</h5>
+              <h2 className='px-3 py-3 font-bold'>Rs.{price}/-</h2>
+
+              <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700'>Add to Cart</button>
+              <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700'><a href={fulldet} className=' no-underline text-white px-[10rem]'>More Details</a></button>
+
             </div>
 
           </div>
@@ -236,7 +241,8 @@ export default function Home() {
                       price:vehicle.price,
                       itemimg:vehicle.vehicle_img,
                       itemdesc:vehicle.vehicle_desc,
-                      fulldet:vehicle.full_details
+                      fulldet:vehicle.full_details,
+                      icolor:vehicle.vehicle_colour
                   })
                 }
                   }>View Item</Button>

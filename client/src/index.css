@@ -81,3 +81,7 @@ p {
   background-color: rgb(17, 24, 39);
   color: white;
 }
+.btn-close{
+  color: white;
+  background-color: white!important;
+}
