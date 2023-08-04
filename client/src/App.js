@@ -5,6 +5,7 @@ import Admin_Login from "./Pages/admin_login";
 import Forgot_passsword from "./Pages/forgot-passsword";
 import My_Cart from "./Pages/my_cart";
 import Inventory from "./Pages/inventory";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 function App() {
