@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { NavLink as Link } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
+import {AiOutlineSearch} from "react-icons/ai"
 
 export default function Header() {
   let [menuicon, changemenuicon] = useState(false);
@@ -27,10 +28,16 @@ export default function Header() {
         <h4 className='flex text-white items-center mt-2'>CPC Canteen</h4>
       </div>
 
+      <div className='relative'>
+        <input type="text" className='pr-[5rem] pl-2 py-1 rounded-md ml-2' placeholder='Search Items'/>
+        <button className=''><AiOutlineSearch className='absolute right-2 bottom-[0.4rem] text-xl'/></button>
+      </div>
+
       <div className="nav" id='nav'>
         <ul className='flex flex-wrap justify-centre items-center mr-4 space-x-5'>
           <li className="text-white cursor-pointer py-[1.37rem] font-semibold "><Link to="/" activeClassName='active'>Home</Link></li>
-          <li className="text-white cursor-pointer py-[1.37rem] font-semibold" ><Link to="/about-us" activeClassName='active'>About Us</Link></li>
+          <li className="text-white cursor-pointer py-[1.37rem] font-semibold" ><Link to="/about-us" activeClassName='active'>My Cart</Link></li>
+          <li className="text-white cursor-pointer py-[1.37rem] font-semibold" ><Link to="/about-us" activeClassName='active'>View Inventory</Link></li>
           <li className="text-white cursor-pointer py-[1.37rem] font-semibold" ><Link to="/about-us" activeClassName='active'><CgProfile className='text-2xl' /></Link></li>
         </ul>
       </div>
