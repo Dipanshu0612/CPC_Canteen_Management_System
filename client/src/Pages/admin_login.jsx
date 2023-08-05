@@ -3,7 +3,7 @@ import MainCarousel from '../components/carousel'
 import { NavLink as Link } from 'react-router-dom'
 
 
-export default function Admin_Login(){
+export default function AdminLogin(){
 return (
     <>
    <div className='flex justify-around h-screen w-full'>

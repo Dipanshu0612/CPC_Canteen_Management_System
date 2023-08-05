@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MainCarousel from '../components/carousel'
 import { NavLink as Link } from 'react-router-dom'
 
-export default function Forgot_passsword() {
+export default function ForgotPasssword() {
   let [a,setA]=useState(0);
   function submit(){
     setA((a)=>1-a)

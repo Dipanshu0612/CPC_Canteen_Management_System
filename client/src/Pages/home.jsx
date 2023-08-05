@@ -82,6 +82,7 @@ export default function Home() {
         <Modal.Body>
           <div className='flex'>
             <div className='w-1/2'>
+              {/*eslint-disable-next-line*/ }
               <img src={itemimg} alt="Item-Image" className='px-8 py-2 object-contain flex items-center justify-center'/>
             </div>
             <div className='w-1/2 flex flex-col'>

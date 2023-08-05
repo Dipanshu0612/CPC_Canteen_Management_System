@@ -6,7 +6,7 @@ import axios from 'axios'
 import Table from 'react-bootstrap/Table';
 import { toast } from 'react-toastify'
 
-export default function My_Cart() {
+export default function MyCart() {
   // const [sum,setSum]=useState(0);
   const [items,setItems]=useState([])
 
