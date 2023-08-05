@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useEffect } from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { NavLink as Link } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
@@ -7,7 +6,6 @@ import { AiOutlineSearch, AiOutlineShoppingCart } from "react-icons/ai"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import Login from '../Pages/login';
 
 export default function Header() {
   let [menuicon, changemenuicon] = useState(false);
