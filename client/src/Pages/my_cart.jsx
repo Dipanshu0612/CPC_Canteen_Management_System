@@ -7,7 +7,7 @@ import Table from 'react-bootstrap/Table';
 import { toast } from 'react-toastify'
 
 export default function My_Cart() {
-  const [sum,setSum]=useState(0);
+  // const [sum,setSum]=useState(0);
   const [items,setItems]=useState([])
 
   useEffect(()=>{
@@ -60,7 +60,7 @@ export default function My_Cart() {
         <tr>
           <th></th>
           <th>Total</th>
-          <th>Rs. {sum}</th>
+          {/* <th>Rs. {sum}</th> */}
           
         </tr>
       </thead>

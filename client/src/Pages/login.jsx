@@ -70,8 +70,8 @@ return (
         <div className='flex flex-col w-50 space-y-5 py-5 px-6 bg-slate-200 rounded-3xl'> 
           <input type="email" placeholder='User Id' className='bg-slate-100 rounded-sm px-2 py-1' value={user_id} onChange={(e) => setUserID(e.target.value)} required />
           <input type="password" placeholder='Password' className='bg-slate-100 rounded-sm px-2 py-1' value={password} onChange={(e) => setPassword(e.target.value)} required/>
-          {a==1?<input type="password" placeholder='Enter OTP' className='bg-slate-100 rounded-sm px-2 py-1 ' value={otp} onChange={(e)=> setOtp(e.target.value)} />:""}
-          {a==1?
+          {a===1?<input type="password" placeholder='Enter OTP' className='bg-slate-100 rounded-sm px-2 py-1 ' value={otp} onChange={(e)=> setOtp(e.target.value)} />:""}
+          {a===1?
           <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg' onClick={handleOTPVerification}>Login</button> : <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg' onClick={()=>{
             handleLogin()
             submit()

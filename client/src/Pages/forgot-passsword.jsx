@@ -30,8 +30,8 @@ export default function Forgot_passsword() {
 
         <div className='flex flex-col w-50 space-y-5 py-5 px-6 bg-slate-200 rounded-3xl'> 
           <input type="email" placeholder='User ID' className='bg-slate-100 rounded-sm px-2 py-1 '/>
-          {a==1?<input type="password" placeholder='Enter OTP' className='bg-slate-100 rounded-sm px-2 py-1 '/>:""}
-          {a==1?
+          {a===1?<input type="password" placeholder='Enter OTP' className='bg-slate-100 rounded-sm px-2 py-1 '/>:""}
+          {a===1?
           <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg'>Submit</button> : <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg' onClick={submit}>Send OTP</button>}
           
 
