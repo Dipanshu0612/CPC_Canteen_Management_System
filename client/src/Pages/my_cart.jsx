@@ -43,6 +43,7 @@ export default function My_Cart() {
           return(
               <tr>
                 <td>{index+1}</td>
+                {/* eslint-disable-next-line*/}
                 <td className='w-1/6 h-[10rem]'><img src={item.itemimg} alt="Item Image" className='object-contain'/></td>
                 <td>{item.name}</td>
                 <td>Rs. {item.price}</td>

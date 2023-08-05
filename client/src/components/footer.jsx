@@ -2,7 +2,7 @@ import React from 'react'
 import {FaSquareWhatsapp} from "react-icons/fa6"
 import {FaGithubSquare,FaInstagramSquare,FaLinkedin} from "react-icons/fa"
 
-export default function () {
+export default function Footer() {
   return (
     <>
     <div className='h-[25rem] bg-black flex flex-col flex-wrap justify-center items-center text-yellow-500 space-y-5'>
