@@ -14,6 +14,7 @@ const SportsModel=require("./models/sports.jsx")
 const MedicineModel=require("./models/medicine.jsx")
 const FoodModel=require("./models/food.jsx")
 const bycrypt=require('bcrypt')
+const CartModel = require('./models/cart.jsx')
 app.use(express.json());
 app.use(cors())
 app.use(bodyParser.json())
@@ -148,4 +149,33 @@ app.post('/verify_otp',async (req,res)=>{
         console.error('Error verifying OTP:', error);
         // res.json({ success: false, message: 'Failed to verify OTP' });
       }
+})
+
+app.post('/addToCart',async (req,res)=>{
+    try {
+        const {name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight} = req.body;
+        var obj={name:name,cname:cname,itype:itype,icolor:icolor,quan:quan,price:price,itemimg:itemimg,itemdesc:itemdesc,fulldet:fulldet,weight:weight}
+        console.log(obj)
+
+        CartModel.create(obj).then((update)=>{
+            console.log(update)
+        }).catch((err)=>{
+            console.log(err)
+        })
+        res.send("Inserted")
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.get('/getCartItems',async (req,res)=>{
+    const data=await CartModel.find({})
+    res.send(data)
+})
+
+app.post('/removeItem',async (req,res)=>{
+    const {name}=req.body;
+    const data=await CartModel.deleteOne({name})
+    console.log(data)
 })

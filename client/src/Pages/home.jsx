@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
+import { toast } from 'react-toastify';
 
 export default function Home() {
   const [vehicle_data, setVehicleData] = useState([])
@@ -30,14 +31,20 @@ export default function Home() {
     weight:""
   })
 
+  
   function handleShow(breakpoint) {
     setFullscreen(true);
     setShow(true);
   }
-
+  
   let {name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight}=curr_item;
   console.log(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
-
+  
+  const addToCart= async (name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)=>{
+    const response = await axios.post('http://localhost:3001/addToCart', { name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight});
+    console.log(response.data)
+    toast.success("Item Inserted In Cart!")
+  }
   useEffect(() => {
     axios.get('http://localhost:3001/getVehicles')
       .then(vehicles => setVehicleData(vehicles.data))
@@ -87,7 +94,9 @@ export default function Home() {
               <h5 className='px-3'>Weight : {weight || "-----------"}</h5>
               <h2 className='px-3 py-3 font-bold'>Rs.{price}/-</h2>
 
-              <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700'>Add to Cart</button>
+              <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700' onClick={()=>{
+                addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+              }}>Add to Cart</button>
               <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700'><a href={fulldet} className=' no-underline text-white px-[10rem]'>More Details</a></button>
 
             </div>
