@@ -15,6 +15,7 @@ const MedicineModel=require("./models/medicine.jsx")
 const FoodModel=require("./models/food.jsx")
 const bycrypt=require('bcrypt')
 const CartModel = require('./models/cart.jsx')
+const Razorpay=require("razorpay")
 app.use(express.json());
 app.use(cors())
 app.use(bodyParser.json())
@@ -178,4 +179,27 @@ app.post('/removeItem',async (req,res)=>{
     const {name}=req.body;
     const data=await CartModel.deleteOne({name})
     console.log(data)
+})
+
+app.post('/removeAll',async (req,res)=>{
+    const data=await CartModel.deleteMany({})
+    console.log(data)
+})
+
+
+app.post('/payment',async (req,res)=>{
+    const amount=req.body;
+    // console.log(amount.amount)
+    let instance = new Razorpay({ key_id: 'rzp_test_76e4ieVsAHAdjT', key_secret: 'u1rWlkzLqyaW9oHdA3PpHaFa' })
+    let options = {
+        amount:amount.amount * 100,
+        currency: "INR",
+        line_items_total: amount.amount * 100,
+    }
+    instance.orders.create(options, function(err, order){
+      if(err){
+        console.log(err)
+      }
+      res.json(order)
+    })
 })
