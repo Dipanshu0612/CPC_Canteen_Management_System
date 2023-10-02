@@ -12,18 +12,18 @@ export default function MyCart() {
   const [items, setItems] = useState([])
   let amount = items.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
-    axios.get('http://localhost:3001/getCartItems')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getCartItems')
       .then(items => setItems(items.data))
       .catch(err => console.log(err))
   }, [items])
 
   async function RemoveItem(name) {
-    let response = await axios.post("http://localhost:3001/removeItem", { name })
+    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/removeItem", { name })
     console.log(response.data)
   }
 
   async function RemoveAll() {
-    let response = await axios.post("http://localhost:3001/removeAll")
+    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/removeAll")
     console.log(response.data)
   }
   const openRazorpay = (data) => {
@@ -43,7 +43,7 @@ export default function MyCart() {
     rzp1.open()
   }
   async function handlePayment() {
-    let response = await axios.post("http://localhost:3001/payment", { amount })
+    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/payment", { amount })
     console.log(response.data)
     openRazorpay(response.data)
   }

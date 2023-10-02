@@ -20,7 +20,7 @@ export default function Login(){
   const handleLogin = async (e) => {
     // e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/send_email', { user_id, password });
+      const response = await axios.post('https://cpc-canteen-management-system.onrender.com/send_email', { user_id, password });
       toast.success(response.data.message)
       // console.log(response.data)
     } catch (error) {
@@ -32,7 +32,7 @@ export default function Login(){
 
   const handleOTPVerification = async (e) => {
     try {
-      const response = await axios.post('http://localhost:3001/verify_otp', { user_id, otp });
+      const response = await axios.post('https://cpc-canteen-management-system.onrender.com/verify_otp', { user_id, otp });
       if(response.data.success){
         toast.success(response.data.message)
         navigate('/')

@@ -41,30 +41,30 @@ export default function Home() {
   console.log(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
   
   const addToCart= async (name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)=>{
-    const response = await axios.post('http://localhost:3001/addToCart', { name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight});
+    const response = await axios.post('https://cpc-canteen-management-system.onrender.com/addToCart', { name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight});
     console.log(response.data)
     toast.success("Item Inserted In Cart!")
   }
   useEffect(() => {
-    axios.get('http://localhost:3001/getVehicles')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getVehicles')
       .then(vehicles => setVehicleData(vehicles.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:3001/getClothes')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getClothes')
       .then(clothes => setClothesData(clothes.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:3001/getElectronics')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getElectronics')
       .then(electronics => setElectronicsData(electronics.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:3001/getHealth')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getHealth')
       .then(health => setHealtData(health.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:3001/getMedicine')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getMedicine')
       .then(medicine => setMedicineData(medicine.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:3001/getFood')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getFood')
       .then(food => setFoodData(food.data))
       .catch(err => console.log(err))
-    axios.get('http://localhost:3001/getSports')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getSports')
       .then(sports => setSportsData(sports.data))
       .catch(err => console.log(err))
   },[])

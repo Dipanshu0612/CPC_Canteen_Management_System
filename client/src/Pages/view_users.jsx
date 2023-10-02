@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 export default function ViewUsers() {
   const [users,setUsers]=useState([])
   useEffect(()=>{
-    axios.get('http://localhost:3001/getUsers')
+    axios.get('https://cpc-canteen-management-system.onrender.com/getUsers')
     .then(users => setUsers(users.data))
     .catch(err => console.log(err))
     console.log(users)
@@ -23,7 +23,7 @@ export default function ViewUsers() {
   let {uid,fn,ln,mn}=curr_user;
 
   async function genratepassword(uid){
-    let send=await axios.post('http://localhost:3001/getUser',{uid:uid})
+    let send=await axios.post('https://cpc-canteen-management-system.onrender.com/getUser',{uid:uid})
     console.log(send.data);
     setCurr_User({
       uid:uid,
@@ -32,7 +32,7 @@ export default function ViewUsers() {
       mn:send.data.mobile_no
     })
     let pass=fn+mn.slice(10);
-    let send_pass=await axios.post('http://localhost:3001/sendPass',{uid:uid,pass:pass})
+    let send_pass=await axios.post('https://cpc-canteen-management-system.onrender.com/sendPass',{uid:uid,pass:pass})
   }
 
   return (
