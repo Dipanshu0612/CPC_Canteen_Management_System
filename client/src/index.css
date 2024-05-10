@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'PT Serif', serif;
+
+}
+
+body {
+  /* background-color: antiquewhite; */
+  margin: 0;
+  font-family: 'PT Serif', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
+
+img {
+  width: 100%;
+  height: 100%;
+}
+.nav a.active {
+  color: rgb(131, 134, 131);
+  transition: 0.2s ease-in-out;
+  border-bottom: 4px solid rgb(6, 136, 249);
+  padding: 1.35rem 0;
+}
+a {
+  text-decoration: none !important;
+}
+ul,
+p {
+  margin-bottom: 0 !important;
+}
+
+#menuicon {
+  display: none;
+}
+@media screen and (min-width: 801px) {
+  #nav {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #menuicon {
+    display: block;
+    font-size: 2rem;
+    margin-right: 2rem;
+    color: whitesmoke;
+  }
+  #nav {
+    position: fixed;
+    top: 4rem;
+    right: 0rem;
+    height: 15rem;
+    background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+    display: none;
+  }
+  .nav ul {
+    flex-direction: column;
+    /* margin-right: 1rem; */
+  }
+  .nav li {
+    margin: auto auto;
+    text-align: center;
+    padding: 1rem 0rem;
+  }
+  .nav a.active {
+    padding: 0.5rem 0;
+  }
+}
+
+.my-modal .modal-content{
+  background-color: rgb(17, 24, 39);
+  color: white;
+}
+.btn-close{
+  color: white;
+  background-color: white!important;
+}
