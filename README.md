@@ -7,7 +7,7 @@ This project was built while paricipating in the **Vadodara Police Hackathon 202
 ![image](https://github.com/Dipanshu0612/CPC_Canteen_Management_System/assets/97778136/f80f3f53-f296-4f56-8b6b-485406edd68b)
 
 ## Tools Used
-This project is built with pure MERN stack. It has ReactJS for its frontend and the backend is built with NodeJS and Express.\ 
+This project is built with pure MERN stack. It has ReactJS for its frontend and the backend is built with NodeJS and Express.\
 MongoDB is used as the NoSQL database. Razorpay Payment Gateway is used for seamless transaction.
 
 ## Functionality Description 
@@ -16,7 +16,7 @@ MongoDB is used as the NoSQL database. Razorpay Payment Gateway is used for seam
 ![image](https://github.com/Dipanshu0612/CPC_Canteen_Management_System/assets/97778136/0269b36f-4ab4-4048-acb9-3eeb52dcfec2)
 User need to login through their specific credentials to use the website. \
 This is supported by 2FA as the user is required to submit an OTP which is mailed to them to login.\
-**Forgot Password** option helps them in case of password not being remembered.\
+**Forgot Password** option helps them in case of password not being remembered.
 
 **This feature is still in development!**
 
