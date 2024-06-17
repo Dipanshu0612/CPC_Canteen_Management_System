@@ -38,7 +38,7 @@ export default function Home() {
   }
   
   let {name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight}=curr_item;
-  console.log(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+  // console.log(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
   
   const addToCart= async (name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)=>{
     const response = await axios.post('https://cpc-canteen-management-system.onrender.com/addToCart', { name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight});
@@ -83,7 +83,7 @@ export default function Home() {
           <div className='flex justify-center items-center sm:flex-col sm'>
             <div className='w-1/2'>
               {/*eslint-disable-next-line*/ }
-              <img src={itemimg} alt="Item-Image" className='px-8 py-2 object-contain flex items-center justify-center h-[100%] md:h-[75%] sm:h-[50%] sm:px-4'/>
+              <img src={itemimg} alt="Item-Image" className='px-8 py-2 object-contain flex items-center justify-center h-[30rem] md:h-[25rem] sm:h-[20rem] sm:px-4'/>
             </div>
             <div className='w-1/2 flex flex-col'>
               <h1 className='px-3 text-[3rem] md:text-[1.5rem] sm:text-[1.2rem]'>{name}</h1>
@@ -119,12 +119,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={food.item_img} className='h-[10rem] object-contain w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{food.item_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{food.company_name}</h4>
-                    <h5>Rs.{food.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex' onClick={()=>{ 
                     handleShow()
                     setCurrItem({
                       name:food.item_name,
@@ -138,7 +133,14 @@ export default function Home() {
                       fulldet:food.item_details
                   })
                   }
-                    }>View Item</Button>
+                    }>{food.item_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{food.company_name}</h4>
+                    <h5>Rs.{food.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -157,12 +159,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={cloth.item_img} className='h-[10rem] object-contain w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{cloth.item_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{cloth.company_name}</h4>
-                    <h5>Rs.{cloth.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex' onClick={()=>{ 
                   handleShow()
                   setCurrItem({
                       name:cloth.item_name,
@@ -177,7 +174,14 @@ export default function Home() {
                       icolor:cloth.color
                   })
                 }
-                  }>View Item</Button>
+                  }>{cloth.item_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{cloth.company_name}</h4>
+                    <h5>Rs.{cloth.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -196,12 +200,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={elec.item_img} className='h-[10rem] object-contain w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{elec.item_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{elec.company_name}</h4>
-                    <h5>Rs.{elec.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex' onClick={()=>{ 
                   handleShow()
                   setCurrItem({
                       name:elec.item_name,
@@ -216,7 +215,14 @@ export default function Home() {
                       icolor:elec.item_colour
                   })
                 }
-                  }>View Item</Button>
+                  }>{elec.item_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{elec.company_name}</h4>
+                    <h5>Rs.{elec.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -235,12 +241,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={vehicle.vehicle_img} className='h-[10rem] object-cover w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{vehicle.vehicle_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{vehicle.company_name}</h4>
-                    <h5>Rs.{vehicle.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex' onClick={()=>{ 
                   handleShow()
                   setCurrItem({
                       name:vehicle.vehicle_name,
@@ -255,7 +256,14 @@ export default function Home() {
                       icolor:vehicle.vehicle_colour
                   })
                 }
-                  }>View Item</Button>
+                  }>{vehicle.vehicle_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{vehicle.company_name}</h4>
+                    <h5>Rs.{vehicle.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -274,12 +282,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={health.item_img} className='h-[10rem] object-contain w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{health.item_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{health.company_name}</h4>
-                    <h5>Rs.{health.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex' onClick={()=>{ 
                   handleShow()
                   setCurrItem({
                       name:health.item_name,
@@ -293,7 +296,14 @@ export default function Home() {
                       fulldet:health.item_details
                   })
                 }
-                  }>View Item</Button>
+                  }>{health.item_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{health.company_name}</h4>
+                    <h5>Rs.{health.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -312,12 +322,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={sport.item_img} className='h-[10rem] object-contain w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{sport.item_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{sport.company_name}</h4>
-                    <h5>Rs.{sport.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex' onClick={()=>{ 
                   handleShow()
                   setCurrItem({
                       name:sport.item_name,
@@ -332,7 +337,14 @@ export default function Home() {
                       icolor:sport.item_colour
                   })
                 }
-                  }>View Item</Button>
+                  }>{sport.item_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{sport.company_name}</h4>
+                    <h5>Rs.{sport.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
@@ -351,12 +363,7 @@ export default function Home() {
               <Card className='w-[18rem]'>
                 <Card.Img variant="top" src={med.item_img} className='h-[10rem] object-contain w-full'/>
                 <Card.Body className=''>
-                  <Card.Title className='flex'>{med.medicine_name}</Card.Title>
-                  <Card.Text className='flex flex-col'>
-                    <h4 className='text-[1rem]'>{med.company_name}</h4>
-                    <h5>Rs.{med.price}/-</h5>
-                  </Card.Text>
-                  <Button variant="primary" onClick={()=>{ 
+                  <Card.Title className='flex'  onClick={()=>{ 
                   handleShow()
                   setCurrItem({
                       name:med.medicine_name,
@@ -370,7 +377,14 @@ export default function Home() {
                       fulldet:med.item_details
                   })
                 }
-                  }>View Item</Button>
+                  }>{med.medicine_name}</Card.Title>
+                  <Card.Text className='flex flex-col'>
+                    <h4 className='text-[1rem]'>{med.company_name}</h4>
+                    <h5>Rs.{med.price}/-</h5>
+                  </Card.Text>
+                  <Button variant="primary" onClick={()=>{
+                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                  }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
               </div>
