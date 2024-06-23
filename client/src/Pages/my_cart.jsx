@@ -115,7 +115,7 @@ export default function MyCart() {
           <div className='text-4xl text-center items-center flex justify-center my-4'>
             Your Cart is Empty. Shop Now!
           </div>
-          <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700'><Link to="/" className="text-white">Back to Home Page</Link></button>
+          <button className='px-4 py-2 bg-green-500 mb-3 hover:bg-green-700'><Link to="/home" className="text-white">Back to Home Page</Link></button>
         </div>
       }
       <Footer />

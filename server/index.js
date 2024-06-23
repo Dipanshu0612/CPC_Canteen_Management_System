@@ -15,7 +15,6 @@ const SportsModel = require("./models/sports.jsx");
 const MedicineModel = require("./models/medicine.jsx");
 const FoodModel = require("./models/food.jsx");
 const bycrypt = require("bcrypt");
-const CartModel = require("./models/cart.jsx");
 const Razorpay = require("razorpay");
 app.use(express.json());
 app.use(cors());
@@ -90,36 +89,25 @@ app.post("/sendPass", async (req, res) => {
 app.post("/send_email", async (req, res) => {
   try {
     const { user_id, password } = req.body;
-
-    console.log(
-      "Received request for userID:",
-      user_id,
-      "with password:",
-      password
-    );
-
     const user = await LoginModel.findOne({ user_id });
-    console.log("User found in database:", user);
     const ValidPass = await bycrypt.compare(password, user.password);
 
     if (!user || !ValidPass) {
-      console.log("Invalid credentials:", user, password);
-      console.log(password, ValidPass);
-      // res.send({success:"false"});
+      res.json({success:"false"});
     }
 
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "vedthakar004@gmail.com",
-        pass: "scfvqsfoctelokdm",
+        user: "dipanshu.a.mishra06@gmail.com",
+        pass: "xybatwjbiiossxlv",
       },
     });
 
     const otp = Math.floor(Math.random() * 10000);
 
     const mailOptions = {
-      from: "vedthakar004@gmail.com",
+      from: "dipanshu.a.mishra06@gmail.com",
       to: "dipanshu.a.mishra06@gmail.com",
       subject: "Login OTP for CPC Canteen",
       text: `Dear ${user.email_id},\n\nYour OTP for the CPC Canteen Login is:\n\n${otp}\n\nThe OTP is valid only for 5 minutes.\n\nThank You for using CPC Canteen!`,
@@ -150,11 +138,10 @@ app.post("/verify_otp", async (req, res) => {
       console.log(user, otp, user.otp);
       res.json({ success: false, message: "Invalid OTP" });
     } else {
-      res.send({ success: true, message: "OTP verification successful" });
+      res.send({ success: true, message: "OTP Verification Successful" });
     }
   } catch (error) {
     console.error("Error verifying OTP:", error);
-    // res.json({ success: false, message: 'Failed to verify OTP' });
   }
 });
 
@@ -239,3 +226,64 @@ app.post("/payment", async (req, res) => {
     res.json(order);
   });
 });
+
+app.post("/forgot_pass", async (req, res) => {
+    try {
+      const { userID } = req.body;
+      const user = await LoginModel.findOne({ user_id:userID });
+      if (!user) {
+        res.json({success:false,message:"User Not Found!"});
+      }
+  
+      const transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: "dipanshu.a.mishra06@gmail.com",
+          pass: "xybatwjbiiossxlv",
+        },
+      });
+  
+      const otp = Math.floor(Math.random() * 10000);
+  
+      const mailOptions = {
+        from: "dipanshu.a.mishra06@gmail.com",
+        to: "dipanshu.a.mishra06@gmail.com",
+        subject: "Login OTP for CPC Canteen",
+        text: `Dear ${user.email_id},\n\nYour OTP for the CPC Canteen Password Reset is:\n\n${otp}\n\nThe OTP is valid only for 5 minutes.\n\nThank You for using CPC Canteen!`,
+      };
+  
+      await transporter.sendMail(mailOptions);
+  
+      let otpreg = await LoginModel.updateOne(
+        { user_id:userID },
+        { $set: { otp: otp.toString() } }
+      );
+      console.log(otpreg);
+  
+      res.json({ success: true, message: "OTP Sent Successfully" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      res.json({ success: false, message: "Failed to Send OTP!!" });
+    }
+  });
+
+app.post("/change_pass", async (req, res) => {
+    try {
+      const { user_id, newPass } = req.body;
+      const hashedpass = await bycrypt.hash(newPass, 10);
+      const user = await LoginModel.findOne({ user_id });
+      if (!user) {
+        res.json({ success: false, message: "User Not Found!" });
+      }
+      let result = await LoginModel.updateOne({user_id},{$set:{password:hashedpass}});
+      if(result){
+        res.json({ success: true, message: "Password Changed Successfully" });
+      }
+      else{
+        res.json({ success: false, message: "Failed to Change Password" });
+      }
+    } catch (error) {
+      console.error("Error changing password:", error);
+      res.json({ success: false, message: "Failed to Change Password" });
+    }
+  })

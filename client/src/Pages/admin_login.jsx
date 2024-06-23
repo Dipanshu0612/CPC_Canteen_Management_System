@@ -33,7 +33,7 @@ return (
         </div>
 
         <div>
-          <button className='bg-green-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/user-login" className="text-black no-underline">User Login</Link></button>
+          <button className='bg-green-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/" className="text-black no-underline">User Login</Link></button>
           {/* <button className='bg-blue-500 py-2 px-2 my-2 mx-2 rounded-lg'><Link to="/forgot-password" className="text-black no-underline">Forgot Password</Link></button> */}
 
         </div>
