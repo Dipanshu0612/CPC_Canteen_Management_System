@@ -77,7 +77,7 @@ export default function Header() {
 
         <div className="nav md:space-y-2" id='nav'>
           <ul className='flex flex-wrap justify-centre items-center mr-4 space-x-5'>
-            <li className="text-white cursor-pointer py-[1.37rem] font-semibold "><Link to="/" activeClassName='active'>Home</Link></li>
+            <li className="text-white cursor-pointer py-[1.37rem] font-semibold "><Link to="/home" activeClassName='active'>Home</Link></li>
             <li className="text-white cursor-pointer py-[1.37rem] font-semibold " ><Link to="/my-cart" activeClassName='active'>My Cart <AiOutlineShoppingCart className='inline text-2xl' /></Link></li>
             <li className="text-white cursor-pointer py-[1.37rem] font-semibold" ><Link to="/inventory" activeClassName='active'>View Inventory</Link></li>
             <li className="text-white cursor-pointer py-[1.37rem] font-semibold" onClick={handleShow}><CgProfile className='text-2xl' /></li>

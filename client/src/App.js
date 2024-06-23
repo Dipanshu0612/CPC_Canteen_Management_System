@@ -15,8 +15,8 @@ function App() {
     <>
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/user-login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home"  element={<Home />}/>
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/forgot-password" element={<ForgotPasssword />} />
         <Route path="/my-cart" element={<MyCart />} />

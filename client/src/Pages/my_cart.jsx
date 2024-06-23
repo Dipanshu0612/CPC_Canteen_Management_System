@@ -10,49 +10,58 @@ import { toast } from 'react-toastify'
 
 export default function MyCart() {
   const [items, setItems] = useState([])
-  let amount = items.reduce((total, item) => total + item.price, 0);
+  let user_id = sessionStorage.getItem('user_id');
+  // let amount = items.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
-    axios.get('https://cpc-canteen-management-system.onrender.com/getCartItems')
-      .then(items => setItems(items.data))
+    axios.get('http://localhost:3001/getCartItems', {
+      params: {
+        user_id: user_id,
+      }
+    })
+      .then(items => setItems(items.data.usercart))
       .catch(err => console.log(err))
-  }, [items])
+  }, [items,user_id])
 
-  async function RemoveItem(name) {
-    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/removeItem", { name })
-    console.log(response.data)
+  async function RemoveItem(item_id) {
+    let response = await axios.post("http://localhost:3001/removeItem", { user_id, item_id })
+    if(response.data=== "Deleted!"){
+      toast.success("Item Removed Successfully!")
+    }
   }
 
   async function RemoveAll() {
-    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/removeAll")
-    console.log(response.data)
-  }
-  const openRazorpay = (data) => {
-    let options = {
-      "key": "rzp_test_76e4ieVsAHAdjT",
-      "one_click_checkout": true,
-      "amount":data.amount * 100,
-      "name": "CPC Canteen",
-      "order_id": data.id,
-      "show_coupons": true,
-      "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
-      handler:function (response){
-        RemoveAll()
-      }
+    let response = await axios.post("http://localhost:3001/removeAll")
+    if(response.data === "Deleted!"){
+      toast.success("Cart Cleared Successfully!")
     }
-    let rzp1 = new window.Razorpay(options);
-    rzp1.open()
   }
+  // const openRazorpay = (data) => {
+  //   let options = {
+  //     "key": "rzp_test_76e4ieVsAHAdjT",
+  //     "one_click_checkout": true,
+  //     "amount":data.amount * 100,
+  //     "name": "CPC Canteen",
+  //     "order_id": data.id,
+  //     "show_coupons": true,
+  //     "callback_url": "https://eneqd3r9zrjok.x.pipedream.net/",
+  //     handler:function (response){
+  //       RemoveAll()
+  //     }
+  //   }
+  //   let rzp1 = new window.Razorpay(options);
+  //   rzp1.open()
+  // }
   async function handlePayment() {
-    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/payment", { amount })
-    console.log(response.data)
-    openRazorpay(response.data)
+    // let response = await axios.post("https://cpc-canteen-management-system.onrender.com/payment", { amount })
+    // console.log(response.data)
+    // openRazorpay(response.data)
   }
 
 
   return (
     <>
       <Header />
-      {items.length > 0 ?
+      {(items.length > 0 && user_id) ?
         <div>
           <h3 className='text-center font-semibold my-3'>Your Cart</h3>
           <Table striped bordered hover variant="dark">
@@ -67,7 +76,6 @@ export default function MyCart() {
             </thead>
             <tbody>
               {items.map((item, index) => {
-                // setSum(sum + item.itemprice)
                 return (
                   <tr>
                     <td>{index + 1}</td>
@@ -76,8 +84,7 @@ export default function MyCart() {
                     <td>{item.name}</td>
                     <td>Rs. {item.price}</td>
                     <td><button className='px-2 py-2 bg-red-600 hover:bg-red-800 ease-in-out transition duration-200' onClick={() => {
-                      RemoveItem(item.name)
-                      toast.success("Item Successfully Removed!")
+                      RemoveItem(item._id)
                     }}>Remove</button></td>
                   </tr>
                 )
@@ -93,7 +100,6 @@ export default function MyCart() {
                   , 0)}</th>
                 <th className='text-center py-3'><button className='px-2 py-2 bg-red-600 hover:bg-red-800 ease-in-out transition duration-200' onClick={() => {
                   RemoveAll()
-                  toast.success("Cart Cleared Successfully!")
                 }}>Clear Cart</button></th>
 
               </tr>

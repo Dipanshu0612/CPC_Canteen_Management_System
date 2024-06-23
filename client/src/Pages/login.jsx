@@ -35,7 +35,8 @@ export default function Login(){
       const response = await axios.post('https://cpc-canteen-management-system.onrender.com/verify_otp', { user_id, otp });
       if(response.data.success){
         toast.success(response.data.message)
-        navigate('/')
+        sessionStorage.setItem('user_id',user_id);
+        navigate('/home')
       }
       else{
         toast.error(response.data.message)

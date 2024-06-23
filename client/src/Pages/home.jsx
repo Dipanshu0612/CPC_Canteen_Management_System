@@ -38,11 +38,15 @@ export default function Home() {
   }
   
   let {name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight}=curr_item;
-  // console.log(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
   
-  const addToCart= async (name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)=>{
-    const response = await axios.post('https://cpc-canteen-management-system.onrender.com/addToCart', { name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight});
-    console.log(response.data)
+  const addToCart= async (curr_item)=>{
+    let user_id = sessionStorage.getItem("user_id");
+    if(!user_id){
+      toast.error("Please Login to Add Items to Cart!")
+      return;
+    }
+    const response = await axios.post('http://localhost:3001/addToCart', { user_id, curr_item});
+    // console.log(response.data)
     toast.success("Item Inserted In Cart!")
   }
   useEffect(() => {
@@ -68,7 +72,6 @@ export default function Home() {
       .then(sports => setSportsData(sports.data))
       .catch(err => console.log(err))
   },[])
-
 
   return (
     <>
@@ -96,7 +99,7 @@ export default function Home() {
               <h2 className='px-3 py-3 font-bold md:text-[2rem] sm:text-[1rem]'>Rs.{price}/-</h2>
 
               <button className='px-0 py-2 bg-green-500 mb-3 hover:bg-green-700 md:w-[35%] sm:w-[55%]' onClick={()=>{
-                addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                addToCart(curr_item)
               }}>Add to Cart</button>
               <button className='px-0 py-2 bg-green-500 mb-3 hover:bg-green-700 md:px-2 md:py-1 text-center md:w-[35%] sm:w-[55%]'><a href={fulldet} className=' no-underline text-white px-[10rem] text-center md:px-2 sm:px-2 '>More Details</a></button>
 
@@ -139,7 +142,19 @@ export default function Home() {
                     <h5>Rs.{food.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name:food.item_name,
+                      cname:food.company_name,
+                      itype:food.diet_type,
+                      weight:food.item_weight,
+                      quan:food.quantity,
+                      price:food.price,
+                      itemimg:food.item_img,
+                      itemdesc:food.item_desc,
+                      fulldet:food.item_details
+                    }
+                    setCurrItem(updatedItem);
+                    addToCart(updatedItem);
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
@@ -180,7 +195,20 @@ export default function Home() {
                     <h5>Rs.{cloth.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name:cloth.item_name,
+                      cname:cloth.company_name,
+                      itype:cloth.diet_type,
+                      weight:cloth.item_weight,
+                      quan:cloth.quantity,
+                      price:cloth.price,
+                      itemimg:cloth.item_img,
+                      itemdesc:cloth.product_details,
+                      fulldet:cloth.item_details,
+                      icolor:cloth.color
+                    }
+                    setCurrItem(updatedItem)
+                    addToCart(updatedItem)                    
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
@@ -221,7 +249,20 @@ export default function Home() {
                     <h5>Rs.{elec.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name: elec.item_name,
+                      cname: elec.company_name,
+                      itype: elec.item_type,
+                      weight: elec.item_weight,
+                      quan: elec.quantity,
+                      price: elec.price,
+                      itemimg: elec.item_img,
+                      itemdesc: elec.description,
+                      fulldet: elec.item_details,
+                      icolor: elec.item_colour
+                  };
+                    setCurrItem(updatedItem)
+                    addToCart(updatedItem)
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
@@ -262,7 +303,20 @@ export default function Home() {
                     <h5>Rs.{vehicle.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name:vehicle.vehicle_name,
+                      cname:vehicle.company_name,
+                      itype:vehicle.vehicle_type,
+                      weight:vehicle.item_weight,
+                      quan:vehicle.quantity,
+                      price:vehicle.price,
+                      itemimg:vehicle.vehicle_img,
+                      itemdesc:vehicle.vehicle_desc,
+                      fulldet:vehicle.full_details,
+                      icolor:vehicle.vehicle_colour
+                  }
+                    setCurrItem(updatedItem)
+                    addToCart(updatedItem)
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
@@ -302,7 +356,19 @@ export default function Home() {
                     <h5>Rs.{health.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name:health.item_name,
+                      cname:health.company_name,
+                      itype:health.item_type,
+                      weight:health.item_weight,
+                      quan:health.quantity,
+                      price:health.price,
+                      itemimg:health.item_img,
+                      itemdesc:health.item_desc,
+                      fulldet:health.item_details
+                  }
+                    setCurrItem(updatedItem)
+                    addToCart(updatedItem)
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
@@ -343,7 +409,20 @@ export default function Home() {
                     <h5>Rs.{sport.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name:sport.item_name,
+                      cname:sport.company_name,
+                      itype:sport.item_type,
+                      weight:sport.item_weight,
+                      quan:sport.quantity,
+                      price:sport.price,
+                      itemimg:sport.item_img,
+                      itemdesc:sport.item_desc,
+                      fulldet:sport.full_details,
+                      icolor:sport.item_colour
+                  }
+                    setCurrItem(updatedItem)
+                    addToCart(updatedItem)
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
@@ -383,7 +462,19 @@ export default function Home() {
                     <h5>Rs.{med.price}/-</h5>
                   </Card.Text>
                   <Button variant="primary" onClick={()=>{
-                    addToCart(name,cname,itype,icolor,quan,price,itemimg,itemdesc,fulldet,weight)
+                    const updatedItem = {
+                      name:med.medicine_name,
+                      cname:med.company_name,
+                      itype:med.medicine_type,
+                      weight:med.item_weight,
+                      quan:med.quantity,
+                      price:med.price,
+                      itemimg:med.item_img,
+                      itemdesc:med.description,
+                      fulldet:med.item_details
+                  }
+                    setCurrItem(updatedItem)
+                    addToCart(updatedItem)
                   }}>Add to Cart</Button>
                 </Card.Body>
               </Card>
