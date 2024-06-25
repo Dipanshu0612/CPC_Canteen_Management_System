@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
 import { NavLink as Link } from 'react-router-dom';
 import { CgProfile } from "react-icons/cg";
@@ -6,61 +6,111 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
 
 export default function Header() {
   let [menuicon, changemenuicon] = useState(false);
   const [show, setShow] = useState(false);
-
+  const [user, setUser] = useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  //   useEffect(() => {
-
-  //     const rzpPaymentForm = document.getElementById("rzp_payment_form");
-  //     if (!rzpPaymentForm.hasChildNodes()) {
-
-  //       const script = document.createElement("script");
-  //       script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-  //       script.async = true;
-  //       script.dataset.payment_button_id = "pl_LklOUd6tPdSZet";
-  //       rzpPaymentForm.appendChild(script);
-
-  //     }
-
-  //   });
+  const handleLogout = () => sessionStorage.clear();
+  const user_id = sessionStorage.getItem('user_id');
+    useEffect(() => {
+      axios.post('http://localhost:3001/getUser', { user_id })
+      .then((res) => {
+        setUser(res.data);
+      })
+      // console.log(user);
+    },[user_id]);
 
   return (
     <>
       <div>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>Hello, {user.first_name}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
-              <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                <Form.Label>Email address</Form.Label>
+              <Form.Group className="mb-2 flex justify-between w-100" controlId="exampleForm.ControlInput1">
+                <div>
+                <Form.Label>User Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={user.first_name + " " + user.last_name}
+                  disabled           
+                />
+                </div>
+                <div>
+                <Form.Label>User ID</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={user.user_id}
+                  disabled           
+                />
+                </div>
+              </Form.Group>
+              <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="email"
-                  placeholder="name@example.com"
-                  autoFocus
+                  value={user.email_id}
+                  disabled
                 />
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
-              >
-                <Form.Label>Example textarea</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+              <Form.Group className="mb-2 flex justify-between w-100 gap-2" controlId="exampleForm.ControlInput1">
+                <div>
+                <Form.Label>Mobile</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={user.mobile_no}
+                  disabled
+                  
+                />
+                </div>
+                <div>
+                <Form.Label>Age</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={user.age}
+                  disabled           
+                />
+                </div>
+                <div>
+                <Form.Label>Gender</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={user.gender}
+                  disabled           
+                />
+                </div>
+                </Form.Group>
+                <Form.Group className="mb-2 gap-4 flex w-100" controlId="exampleForm.ControlInput1">
+                <div>
+                <Form.Label>Rank</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={user.position}
+                  disabled           
+                />
+                </div>
+                <div>
+                <Form.Label>Address</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={user.address}
+                  disabled           
+                />
+                </div>
               </Form.Group>
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button variant="primary" onClick={handleClose}>
               Close
             </Button>
-            <Button variant="primary" onClick={handleClose}>
-              Save Changes
-            </Button>
+            <Button variant="danger" onClick={handleLogout}><Link to='/' className="no-underline text-white">Logout</Link></Button>
           </Modal.Footer>
         </Modal>
       </div>

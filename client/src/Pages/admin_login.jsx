@@ -12,12 +12,12 @@ return (
   <MainCarousel />
 </div>
 
-<div className='w-1/2 h-full bg-slate-300 flex items-center justify-center flex-col space-y-8'>
+<div className='w-1/2 h-full bg-slate-100 flex items-center justify-center flex-col space-y-8'>
 
         <div className='flex space-x-5 '>
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Government_of_India_logo.svg" alt="" className='w-[7rem]'/>
           <img src="https://upload.wikimedia.org/wikipedia/en/6/6e/Central_Police_Canteen_Logo.png" alt="" className='w-[7rem]'/>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ministry_of_Home_Affairs_India.svg/1200px-Ministry_of_Home_Affairs_India.svg.png" alt="" className='w-[13rem]'/>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Ministry_of_Home_Affairs_India.svg/1200px-Ministry_of_Home_Affairs_India.svg.png" alt="" className='w-[13rem] p-3'/>
           <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/95/Digital_India_logo.svg/1200px-Digital_India_logo.svg.png" alt="" className="w-[7rem]" / >
         </div>
 

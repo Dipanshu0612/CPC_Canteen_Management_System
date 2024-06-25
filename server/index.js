@@ -67,8 +67,8 @@ app.get("/getSports", async (req, res) => {
 });
 
 app.post("/getUser", async (req, res) => {
-  let uid = req.body.uid;
-  console.log(uid);
+  let uid = req.body.user_id;
+  // console.log(uid);
   const data = await UserModel.findOne({ user_id: uid });
   res.send(data);
 });

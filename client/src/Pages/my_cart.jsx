@@ -11,7 +11,6 @@ import { toast } from 'react-toastify'
 export default function MyCart() {
   const [items, setItems] = useState([])
   let user_id = sessionStorage.getItem('user_id');
-  // let amount = items.reduce((total, item) => total + item.price, 0);
   useEffect(() => {
     axios.get('http://localhost:3001/getCartItems', {
       params: {
@@ -30,7 +29,7 @@ export default function MyCart() {
   }
 
   async function RemoveAll() {
-    let response = await axios.post("http://localhost:3001/removeAll")
+    let response = await axios.post("http://localhost:3001/removeAll",{ user_id })
     if(response.data === "Deleted!"){
       toast.success("Cart Cleared Successfully!")
     }
