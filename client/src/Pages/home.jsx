@@ -37,7 +37,7 @@ export default function Home() {
     setShow(true);
   }
 
-  let { name, cname, itype, icolor, quan, price, itemimg, itemdesc, fulldet, weight } = curr_item;
+  let { name, cname, itype, icolor, price, itemimg, itemdesc, fulldet, weight } = curr_item;
 
   const addToCart = async (curr_item) => {
     let user_id = sessionStorage.getItem("user_id");
@@ -46,8 +46,9 @@ export default function Home() {
       return;
     }
     const response = await axios.post('https://cpc-canteen-management-system.onrender.com/addToCart', { user_id, curr_item });
-    // console.log(response.data)
-    toast.success("Item Inserted In Cart!")
+    if(response){
+      toast.success("Item Inserted In Cart!")
+    }
   }
   useEffect(() => {
     axios.get('https://cpc-canteen-management-system.onrender.com/getVehicles')
