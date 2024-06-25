@@ -12,7 +12,7 @@ export default function MyCart() {
   const [items, setItems] = useState([])
   let user_id = sessionStorage.getItem('user_id');
   useEffect(() => {
-    axios.get('http://localhost:3001/getCartItems', {
+    axios.get('https://cpc-canteen-management-system.onrender.com/getCartItems', {
       params: {
         user_id: user_id,
       }
@@ -22,14 +22,14 @@ export default function MyCart() {
   }, [items,user_id])
 
   async function RemoveItem(item_id) {
-    let response = await axios.post("http://localhost:3001/removeItem", { user_id, item_id })
+    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/removeItem", { user_id, item_id })
     if(response.data=== "Deleted!"){
       toast.success("Item Removed Successfully!")
     }
   }
 
   async function RemoveAll() {
-    let response = await axios.post("http://localhost:3001/removeAll",{ user_id })
+    let response = await axios.post("https://cpc-canteen-management-system.onrender.com/removeAll",{ user_id })
     if(response.data === "Deleted!"){
       toast.success("Cart Cleared Successfully!")
     }

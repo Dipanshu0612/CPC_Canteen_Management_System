@@ -11,7 +11,7 @@ export default function ForgotPasssword() {
   const [isDisabled, setIsDisabled] = useState(false);
   let [newPass, setNewPass] = useState('');
   let [confirmPass, setConfirmPass] = useState('');
-  let navigate=useNavigate()
+  let navigate = useNavigate()
 
   const inputStyle = {
     backgroundColor: isDisabled ? '#f2f2f2' : 'white',
@@ -20,7 +20,7 @@ export default function ForgotPasssword() {
   };
 
   async function submit() {
-    let response = await axios.post('http://localhost:3001/forgot_pass', { userID });
+    let response = await axios.post('https://cpc-canteen-management-system.onrender.com/forgot_pass', { userID });
     if (response.data.success) {
       setA((a) => 1 - a)
       toast.success(response.data.message);
@@ -31,7 +31,7 @@ export default function ForgotPasssword() {
   }
 
   async function verifyOTP() {
-    let response = await axios.post('http://localhost:3001/verify_otp', { user_id: userID, otp });
+    let response = await axios.post('https://cpc-canteen-management-system.onrender.com/verify_otp', { user_id: userID, otp });
     if (response.data.success) {
       setIsDisabled(true);
       setShowNewPass(true);
@@ -47,7 +47,7 @@ export default function ForgotPasssword() {
       toast.error("Passwords do not match");
       return;
     }
-    let response = await axios.post('http://localhost:3001/change_pass', { user_id: userID, newPass });
+    let response = await axios.post('https://cpc-canteen-management-system.onrender.com/change_pass', { user_id: userID, newPass });
     if (response.data.success) {
       toast.success(response.data.message);
       navigate('/');
@@ -78,12 +78,12 @@ export default function ForgotPasssword() {
             <input type="text" placeholder='User ID' className='bg-slate-100 rounded-sm px-2 py-1 ' value={userID} onChange={(e) => setUserID(e.target.value)} required />
             {a === 1 ? <><input type="password" placeholder='Enter OTP' className='bg-slate-100 rounded-sm px-2 py-1 ' onChange={(e) => {
               setOTP(e.target.value)
-            }} disabled={isDisabled} style={inputStyle}/>
+            }} disabled={isDisabled} style={inputStyle} />
               <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg' onClick={verifyOTP} hidden={showNewPass}>Submit</button> </> : <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg' onClick={submit}>Send OTP</button>}
-            {showNewPass && <><input type="password" placeholder='New Password' className='bg-slate-100 rounded-sm px-2 py-1 ' onChange={(e)=>{
+            {showNewPass && <><input type="password" placeholder='New Password' className='bg-slate-100 rounded-sm px-2 py-1 ' onChange={(e) => {
               setNewPass(e.target.value);
             }} />
-              <input type="password" placeholder='Confirm Password' className='bg-slate-100 rounded-sm px-2 py-1' onChange={(e)=>{setConfirmPass(e.target.value)}} />
+              <input type="password" placeholder='Confirm Password' className='bg-slate-100 rounded-sm px-2 py-1' onChange={(e) => { setConfirmPass(e.target.value) }} />
               <button className='bg-green-500 py-2 px-[0.15rem] mt-4 mx-5 rounded-lg' onClick={handleChangePass}>Change Password</button></>}
           </div>
 

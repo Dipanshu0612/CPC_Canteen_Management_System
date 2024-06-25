@@ -17,7 +17,7 @@ export default function Header() {
   const handleLogout = () => sessionStorage.clear();
   const user_id = sessionStorage.getItem('user_id');
     useEffect(() => {
-      axios.post('http://localhost:3001/getUser', { user_id })
+      axios.post('https://cpc-canteen-management-system.onrender.com/getUser', { user_id })
       .then((res) => {
         setUser(res.data);
       })
