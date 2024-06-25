@@ -29,7 +29,7 @@ export default function Header() {
       <div>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Hello, {user.first_name}</Modal.Title>
+            <Modal.Title>Hello, {user.first_name}!</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
@@ -86,7 +86,7 @@ export default function Header() {
                 />
                 </div>
                 </Form.Group>
-                <Form.Group className="mb-2 gap-4 flex w-100" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-2 flex justify-between w-100" controlId="exampleForm.ControlInput1">
                 <div>
                 <Form.Label>Rank</Form.Label>
                 <Form.Control
