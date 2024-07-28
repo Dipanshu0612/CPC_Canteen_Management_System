@@ -13,12 +13,13 @@ MongoDB is used as the NoSQL database. Razorpay Payment Gateway is used for seam
 ## Functionality Description 
 
 ### User Authentication
-![image](https://github.com/Dipanshu0612/CPC_Canteen_Management_System/assets/97778136/0269b36f-4ab4-4048-acb9-3eeb52dcfec2)
+![image](https://github.com/user-attachments/assets/3c83df25-94ab-49e0-a3e7-30f34cda61fb)
+
 User need to login through their specific credentials to use the website. \
 This is supported by 2FA as the user is required to submit an OTP which is mailed to them to login.\
 **Forgot Password** option helps them in case of password not being remembered.
 
-**This feature is still in development!**
+**Guest Mode has been added so that guest users can use the website.**
 
 ### Detailed Product Description 
 ![image](https://github.com/Dipanshu0612/CPC_Canteen_Management_System/assets/97778136/e96ae858-6ba8-4cdb-acf2-381f7b3e7be8)
